@@ -34,36 +34,38 @@ def get_duration(visit):
     now = localtime(visit.entered_at)
     then = localtime()
     delta = then.replace(tzinfo=None) - now.replace(tzinfo=None)
-    return delta.seconds
+    return delta.total_seconds()
 
 def get_all_passcards():
     return Passcard.objects.all()
 
 def format_duration(duration):
     d = timedelta(seconds=duration)
-    return d
+    format_duration = str(d).split('.')[0]
+    return format_duration
+
+def check_minutes_visit(minutes_visit, minutes_limit):
+    result = minutes_visit > minutes_limit
+    return result
 
 def long_visit_info(visits, minutes=60):
     long_visit = list()
     for visitor in visits:
-        if visitor.leaved_at:
-            seconds = get_duration(visitor)
-            minutes_visit = seconds // 60
-            print(minutes)
-            if minutes_visit > minutes:
-                long_visit.append(visitor)
+        seconds = get_duration(visitor)
+        minutes_visit = seconds // 60
+        is_long = check_minutes_visit(minutes_visit, minutes)
+        if is_long:
+            long_visit.append(visitor)
     return long_visit   
 
 def is_visit_long(visit, minutes=60):
     seconds = get_duration(visit)
     minutes_visit = seconds // 60
-    if minutes_visit > minutes:
-        return True
-    return False
+    is_long = check_minutes_visit(minutes_visit, minutes)
+    return is_long
 
-def get_visited_info(visitor):
-    return Visit.objects.filter(passcard=visitor)
-
+def get_visited_info(visitors):
+    return Visit.objects.filter(passcard=visitors)
         
 
     
