@@ -4,7 +4,7 @@
 
 <h2>Как установить</h2>
 
-Для установки необходимо прописать pip install -r requirements.txt
+Для установки необходимо прописать ```pip install -r requirements.txt```
 
 <h2>Цель проекта</h2>
  
