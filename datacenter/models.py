@@ -31,9 +31,9 @@ class Visit(models.Model):
         )
 
 def get_duration(visit):
-    now = localtime(visit.entered_at)
-    then = localtime()
-    delta = then.replace(tzinfo=None) - now.replace(tzinfo=None)
+    entered_at_time = localtime(visit.entered_at)
+    now_localtime = localtime()
+    delta = now_localtime.replace(tzinfo=None) - entered_at_time.replace(tzinfo=None)
     return delta.total_seconds()
 
 def get_all_passcards():
