@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 
 
-def get_all_visitors():
+def visitor_not_leaved():
     return Visit.objects.filter(leaved_at__isnull=True)
 
 def get_visitors(visitors):
@@ -27,7 +27,7 @@ def get_visitors(visitors):
     return non_closed_visitors
 
 def storage_information_view(request):
-    all_visitors = get_all_visitors()
+    all_visitors = visitor_not_leaved()
     visitors = get_visitors(all_visitors)
 
     context = {
