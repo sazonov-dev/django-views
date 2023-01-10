@@ -22,8 +22,13 @@ def passcard_visits_render(visitors):
     return this_passcard_visits
 
 
+def get_passcard_with_passcode(passcode):
+    passcard = get_object_or_404(Passcard, passcode=passcode)
+    return passcard
+
+
 def passcard_info_view(request, passcode):
-    passcard = Passcard.objects.get(passcode=passcode)
+    passcard = get_passcard_with_passcode(passcode)
     all_visited_info = get_visited_info(passcard)
     this_passcard_visits = passcard_visits_render(all_visited_info)
 
