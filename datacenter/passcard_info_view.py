@@ -2,7 +2,7 @@ from datacenter.models import Passcard
 from datacenter.models import is_visit_long
 from datacenter.models import format_duration
 from datacenter.models import get_duration
-from datacenter.models import get_visited_info
+from datacenter.models import get_visitor_with_passcard
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 
@@ -29,7 +29,7 @@ def get_passcard_with_passcode(passcode):
 
 def passcard_info_view(request, passcode):
     passcard = get_passcard_with_passcode(passcode)
-    all_visited_info = get_visited_info(passcard)
+    all_visited_info = get_visitor_with_passcard(passcard)
     this_passcard_visits = passcard_visits_render(all_visited_info)
 
     context = {
