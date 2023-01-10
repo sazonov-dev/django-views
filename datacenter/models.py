@@ -48,16 +48,6 @@ def check_minutes_visit(minutes_visit, minutes_limit):
     result = minutes_visit > minutes_limit
     return result
 
-def long_visit_info(visits, minutes=60):
-    long_visit = list()
-    for visitor in visits:
-        seconds = get_duration(visitor)
-        minutes_visit = seconds // 60
-        is_long = check_minutes_visit(minutes_visit, minutes)
-        if is_long:
-            long_visit.append(visitor)
-    return long_visit   
-
 def is_visit_long(visit, minutes=60):
     seconds = get_duration(visit)
     minutes_visit = seconds // 60
