@@ -24,10 +24,10 @@ def get_visitors(visitors):
     return non_closed_visitors
 
 def storage_information_view(request):
-    not_leaved_visitors = not_leaved_visitors()
-    visitors = get_visitors(not_leaved_visitors)
+    all_not_leaved_visitors = not_leaved_visitors()
+    visitors_render_format = get_visitors(all_not_leaved_visitors)
 
     context = {
-        'non_closed_visits': visitors,
+        'non_closed_visits': visitors_render_format,
     }
     return render(request, 'storage_information.html', context)
