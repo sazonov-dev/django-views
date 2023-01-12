@@ -5,7 +5,7 @@ from datacenter.models import format_duration
 from django.shortcuts import render
 
 
-def not_leaved_visitor():
+def not_leaved_visitors():
     return Visit.objects.filter(leaved_at__isnull=True)
 
 def get_visitors(visitors):
@@ -24,8 +24,8 @@ def get_visitors(visitors):
     return non_closed_visitors
 
 def storage_information_view(request):
-    all_visitors = not_leaved_visitor()
-    visitors = get_visitors(all_visitors)
+    not_leaved_visitors = not_leaved_visitors()
+    visitors = get_visitors(not_leaved_visitors)
 
     context = {
         'non_closed_visits': visitors,
