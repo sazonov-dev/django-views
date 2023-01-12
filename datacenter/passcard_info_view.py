@@ -6,7 +6,7 @@ from datacenter.models import get_visitor_with_passcard
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 
-def passcard_visits_render(visitors):
+def render_visit_with_passcard(visitors):
     this_passcard_visits = list()
     for visitor in visitors:
         duration_seconds = get_duration(visitor)
@@ -30,7 +30,7 @@ def get_passcard_with_passcode(passcode):
 def passcard_info_view(request, passcode):
     passcard = get_passcard_with_passcode(passcode)
     all_visited_info = get_visitor_with_passcard(passcard)
-    this_passcard_visits = passcard_visits_render(all_visited_info)
+    this_passcard_visits = render_visit_with_passcard(all_visited_info)
 
     context = {
         'passcard': passcard,
