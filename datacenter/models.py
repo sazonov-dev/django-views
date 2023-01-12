@@ -58,8 +58,8 @@ def is_visit_long(visit, minutes=60):
     is_long = check_minutes_visit(minutes_visit, minutes)
     return is_long
 
-def get_visitor_with_passcard(visitors):
-    return Visit.objects.filter(passcard=visitors)
+def get_visitor_with_passcard(visitor):
+    return Visit.objects.filter(passcard=visitor)
         
 
     
